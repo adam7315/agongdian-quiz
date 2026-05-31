@@ -185,7 +185,7 @@ body{
   <div class="rules-sub">✦ 阿公店水庫 課後大挑戰 ✦</div>
   <div class="rule-cards">
     <div class="rule-c"><span class="ri">🎡</span><span class="rt">轉動輪盤，決定<strong>簡單／中等／困難</strong>，系統隨機出一題</span></div>
-    <div class="rule-c"><span class="ri">⏱️</span><span class="rt">請一位同學上台，在 <strong>30 秒</strong>內選出正確答案</span></div>
+    <div class="rule-c"><span class="ri">⏱️</span><span class="rt">請一位上台，在 <strong>30 秒</strong>內選出正確答案</span></div>
     <div class="rule-c"><span class="ri">🔄</span><span class="rt">答錯不馬上公布——可以選<strong>「再試一次」</strong>或點<strong>「看答案」</strong></span></div>
     <div class="rule-c"><span class="ri">🏆</span><span class="rt">每人只答一題，全部完成後查看<strong>成績報告</strong></span></div>
   </div>
@@ -197,7 +197,7 @@ body{
   <div class="big-title">🏞️ 阿公店水庫大挑戰</div>
   <div class="sub-ttl">水資源保育 × 防洪智慧</div>
   <div class="card">
-    <label>今天有幾位同學上台？</label>
+    <label>今天有幾位上台答題？</label>
     <div class="count-row">
       <button class="num-btn" onclick="adj(-1)">−</button>
       <div id="count-display">5</div>
@@ -210,7 +210,7 @@ body{
 <!-- 輪盤 -->
 <div id="s-wheel" class="screen">
   <div class="stu-badge">✦ 現在上台的是 ✦</div>
-  <div class="stu-num">第 <span id="stu-n">1</span> 位同學</div>
+  <div class="stu-num">第 <span id="stu-n">1</span> 位</div>
   <div class="wheel-outer">
     <div class="wheel-glow"></div>
     <div class="wheel-wrap">
@@ -370,10 +370,10 @@ function sndReveal(){ [440,554,659].forEach((f,i)=>setTimeout(()=>tone(f,.25,'si
 function sndTick(v=.12){ const c=ac(),o=c.createOscillator(),g=c.createGain(); o.connect(g); g.connect(c.destination); o.type='triangle'; o.frequency.value=700; o.frequency.exponentialRampToValueAtTime(250,c.currentTime+.04); g.gain.setValueAtTime(v,c.currentTime); g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.05); o.start(); o.stop(c.currentTime+.06); }
 let bgI=[];
 function bgmStart(urgent=false){ bgmStop(); const c=ac(); const bMs=urgent?440:820,bF=urgent?220:165;
-  function beat(){ [[0,urgent?.15:.09],[urgent?90:100,urgent?.08:.05]].forEach(([d,v])=>{ const o=c.createOscillator(),g=c.createGain(); o.connect(g); g.connect(c.destination); o.type='sine'; o.frequency.value=bF; const t=c.currentTime+d/1000; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(v,t+.018); g.gain.exponentialRampToValueAtTime(.001,t+.2); o.start(t); o.stop(t+.25); }); }
+  function beat(){ [[0,urgent?.22:.14],[urgent?90:100,urgent?.12:.08]].forEach(([d,v])=>{ const o=c.createOscillator(),g=c.createGain(); o.connect(g); g.connect(c.destination); o.type='sine'; o.frequency.value=bF; const t=c.currentTime+d/1000; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(v,t+.018); g.gain.exponentialRampToValueAtTime(.001,t+.2); o.start(t); o.stop(t+.25); }); }
   beat(); bgI.push(setInterval(beat,bMs));
   const aN=urgent?[440,523,659,523]:[330,392,440,392],aMs=urgent?180:320; let step=0;
-  bgI.push(setInterval(()=>{ const o=c.createOscillator(),g=c.createGain(); o.connect(g); g.connect(c.destination); o.type=urgent?'sawtooth':'triangle'; o.frequency.value=aN[step%aN.length]; g.gain.setValueAtTime(urgent?.038:.022,c.currentTime); g.gain.exponentialRampToValueAtTime(.001,c.currentTime+aMs/1000*.8); o.start(); o.stop(c.currentTime+aMs/1000); step++; },aMs));
+  bgI.push(setInterval(()=>{ const o=c.createOscillator(),g=c.createGain(); o.connect(g); g.connect(c.destination); o.type=urgent?'sawtooth':'triangle'; o.frequency.value=aN[step%aN.length]; g.gain.setValueAtTime(urgent?.06:.038,c.currentTime); g.gain.exponentialRampToValueAtTime(.001,c.currentTime+aMs/1000*.8); o.start(); o.stop(c.currentTime+aMs/1000); step++; },aMs));
 }
 function bgmStop(){ bgI.forEach(clearInterval); bgI=[]; }
 
@@ -524,7 +524,7 @@ function showResult(q,ok,idx,retriedOk=false){
   document.getElementById('exp-c').textContent=q.ce;
   document.getElementById('exp-w').textContent=q.we;
   const rem=G.total-G.current;
-  document.getElementById('cont-btn').textContent=rem>0?`繼續 → 第 ${G.current+1} 位同學`:'🏆 查看成績報告';
+  document.getElementById('cont-btn').textContent=rem>0?`繼續 → 第 ${G.current+1} 位`:'🏆 查看成績報告';
   show('result');
 }
 function next(){ nextStu(); }
