@@ -806,6 +806,9 @@ function restart(keepUsed=false){ bgmStop(); G.current=0; G.results=[]; G.rot=0;
 function show(name){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('s-'+name).classList.add('active'); }
 
 document.getElementById('count-display').textContent=G.total;
+
+// 追蹤遊戲開啟次數
+fetch('https://script.google.com/macros/s/AKfycbygZJvOmWMbli80Cg-eU0pJICy9_08YIjAq9xiNJGMadCQ0t5VqSL4FlIxoE-a-eTdV9Q/exec?action=log&game_id=agongdian-quiz&game_name=%E9%98%BF%E5%85%AC%E5%BA%97%E6%B0%B4%E5%BA%AB%E8%AA%B2%E5%BE%8C%E5%A4%A7%E6%8C%91%E6%88%B0&category=%E6%B0%B4%E8%B3%87%E6%BA%90%E9%81%8A%E6%88%B2').catch(function(){});
 </script>
 </body>
 </html>
